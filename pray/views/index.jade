@@ -1,0 +1,28 @@
+html(ng-app="indexapp")
+	head
+		title 属灵圈子
+		link(rel="icon", href="/images/web_icon.jpg", type="image/jpg")
+		script(src="/javascripts/angular.js")
+		script(src="/javascripts/bootstrap.js")
+		script(src="/javascripts/index/index.js")
+		link(rel="stylesheet", type="text/css", href="/stylesheets/bootstrap.min.css")
+		link(rel="stylesheet", type="text/css", href="/stylesheets/customer.css")
+	body(ng-controller="IndexController")
+		include ./public/header.jade
+		div.container
+			div.col-md-10.col-md-push-1
+				div.col-md-10
+					div.panel.panel-success
+						div.panel-heading 代祷事项录入
+						div.panel-body 
+							form
+								div.form-group
+									input.form-control(ng-model="name", placeholder="姓名")
+									br
+									textarea.form-control(ng-model="content", placeholder="代祷内容")
+									br
+									input.form-control(type="datetime-local", ng-model="date")
+									br
+									input.btn(type="button", value="提交")
+
+				
