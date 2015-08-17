@@ -10,7 +10,7 @@ html(ng-app="indexapp")
 	body(ng-controller="IndexController")
 		include ./public/header.jade
 		div.container
-			div.col-md-10.col-md-push-1
+			div.col-md-10.col-md-push-1(style="padding-top:30px")
 				div.col-md-10
 					div.panel.panel-success
 						div.panel-heading 代祷事项录入
@@ -21,8 +21,11 @@ html(ng-app="indexapp")
 									br
 									textarea.form-control(ng-model="content", placeholder="代祷内容")
 									br
-									input.form-control(type="datetime-local", ng-model="date")
+									input.form-control(type="date", ng-model="date")
 									br
-									input.btn(type="button", value="提交")
+									input.btn(type="button", value="提交", ng-click="insertRecord()")
+					div.panel.panel-success
+						div.panel-heading 大家代祷事项
+						div.panel-body hello world
 
 				
