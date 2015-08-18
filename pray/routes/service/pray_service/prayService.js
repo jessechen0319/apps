@@ -11,4 +11,6 @@ function insertPrayRecord(prayRecord) {
 	});
 }
 
+insertPrayRecord({'name':'jesse', 'content': 'hello world', 'date': '2015-06-01'});
+
 module.exports.insertPrayRecord = insertPrayRecord;
