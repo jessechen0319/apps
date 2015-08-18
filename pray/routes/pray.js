@@ -19,9 +19,7 @@ router.post('/insertRecord', function(req, res, next) {
 
 router.get('/getRecords', function(req, res, next){
 
-	var result = prayService.getRecords();
-	res.writeHead(200, { 'Content-Type': 'text/html;charset=utf-8'});
-	res.end(JSON.stringify(result));
+	prayService.getRecords(res);
 });
 
 module.exports = router;

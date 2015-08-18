@@ -17,19 +17,23 @@ function insertPrayRecord(prayRecord) {
 	return insertResult;
 }
 
-function getRecords() {
 
-	var returnValue = [];
+
+
+function getRecords(res) {
+
 	db.open(function(err, db){
+		db.collection('pray', function(err, collection) {
 
-		db.collection('pray', function(err, collection){
-
-			collection.find().toArray(function(err,docs){
-				returnValue = docs;
-			});
+			var cr= collection.find({}).toArray(function(err,docs){
+		            if(err){
+		                console.log("to Array Error");
+		            }
+		            res.writeHead(200, { 'Content-Type': 'text/html;charset=utf-8' });
+		            res.end(JSON.stringify(docs));
+		        });
 		});
 	});
-	return returnValue;
 }
 
 module.exports.insertPrayRecord = insertPrayRecord;

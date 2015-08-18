@@ -23,9 +23,16 @@ html(ng-app="indexapp")
 									br
 									input.form-control(type="date", ng-model="date")
 									br
-									input.btn(type="button", value="提交", ng-click="insertRecord()")
+									input(type="button", value="提交", ng-click="insertRecord()", ng-class="submitClass")
 					div.panel.panel-success
 						div.panel-heading 大家代祷事项
-						div.panel-body hello world
+						div.panel-body(ng-init="getPrayRecords()")
+							div.list-group
+								a.list-group-item(ng-repeat="prayRecord in prayData | orderBy:date ")
+									h4.list-group-item-heading {{prayRecord.name}}
+									br
+									p.list-group-item-text {{prayRecord.content}}
+									br
+									p.list-group-item-text {{prayRecord.date.substring(0, 10)}}
 
 				

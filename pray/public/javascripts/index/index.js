@@ -1,7 +1,8 @@
 var indexapp = angular.module("indexapp", ['ui.bootstrap']);
 indexapp.controller("IndexController", function($scope, $http) {
 	$scope.isLogined = false;
-
+	$scope.submitClass = 'btn';
+	$scope.prayData = [];
 	$scope.login = function(){
 		console.log("login");
 	};
@@ -9,21 +10,38 @@ indexapp.controller("IndexController", function($scope, $http) {
 	$scope.insertRecord = function(){
 
 		//prepare data content
-		var dataContent = {'name': $scope.name,
+		$scope.submitClass = 'disabled btn';
+		if($scope.name && $scope.content && $scope.date){
+			var dataContent = {'name': $scope.name,
 					'date': $scope.date,
 					'content': $scope.content};
 
-		//main request			
+			//main request			
+			$http(
+				{method: 'POST',
+				params: dataContent,
+				url: "/pray/insertRecord"
+			}).success(function(data){
+				$scope.submitClass = 'btn';
+				$scope.getPrayRecords();
+			}).error(function(){
+				$scope.submitClass = 'btn';
+			});
+		}
+		
+	};
+
+
+	$scope.getPrayRecords = function(){
+
 		$http(
-			{method: 'POST',
-			params: dataContent,
-			url: "/pray/insertRecord"
+			{method: 'GET',
+			url: "/pray/getRecords"
 		}).success(function(data){
 			console.log(data);
-			console.log('success');
+			$scope.prayData = data;
 		}).error(function(){
-			console.log('error');
+
 		});
-		console.log('insertRecord');
 	};
 });
