@@ -9,15 +9,10 @@ router.get('/insertRecord', function(req, res, next) {
 
 	var date = new Date(stringDate);
 
-	console.log(stringDate);
-	console.log(date);
-
-
-
-	/*var insertRecord = {'name': name, 'content': content, 'date': date};
-	prayService.insertPrayRecord(insertRecord);*/
+	var insertRecord = {'name': name, 'content': content, 'date': date};
+	var result = prayService.insertPrayRecord(insertRecord);
 	
-	res.end("hello");
+	res.end({'result': result});
 });
 
 module.exports = router;
