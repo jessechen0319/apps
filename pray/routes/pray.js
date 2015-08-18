@@ -3,16 +3,18 @@ var router = express.Router();
 var prayService = require('./service/pray_service/prayService');
 /* GET home page. */
 router.get('/insertRecord', function(req, res, next) {
-	var name = req.param('name'),
-	content = req.param('content'),
-	stringDate = req.param('date');
+	
+	var name = unescape(req.param('name')),
+	content = decodeURIComponent(req.param('content')),
+	stringDate = decodeURIComponent(req.param('date'));
 
 	var date = new Date(stringDate);
 
 	var insertRecord = {'name': name, 'content': content, 'date': date};
+	console.log(JSON.stringify(insertRecord));
 	var result = prayService.insertPrayRecord(insertRecord);
 	
-	res.end({'result': result});
+	res.end(JSON.stringify({'result': result}));
 });
 
 module.exports = router;

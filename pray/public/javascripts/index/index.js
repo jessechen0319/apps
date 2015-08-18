@@ -17,8 +17,8 @@ indexapp.controller("IndexController", function($scope, $http) {
 		$http(
 			{method: 'GET',
 			params: dataContent,
-			url: "/pray/insertRecord"}
-		).success(function(data){
+			url: "/pray/insertRecord"
+		}).success(function(data){
 			console.log(data);
 			console.log('success');
 		}).error(function(){
