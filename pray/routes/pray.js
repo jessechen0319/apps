@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var prayService = require('./service/pray_service/prayService');
 /* GET home page. */
-router.get('/insertRecord', function(req, res, next) {
+router.post('/insertRecord', function(req, res, next) {
 	
 	var name = unescape(req.param('name')),
 	content = decodeURIComponent(req.param('content')),
