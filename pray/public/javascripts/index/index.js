@@ -27,6 +27,8 @@ indexapp.controller("IndexController", function($scope, $http) {
 			}).error(function(){
 				$scope.submitClass = 'btn';
 			});
+		} else {
+			$scope.submitClass = 'btn';
 		}
 		
 	};
