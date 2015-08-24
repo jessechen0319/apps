@@ -7,11 +7,23 @@ html(ng-app="indexapp")
 		script(src="/javascripts/index/index.js")
 		link(rel="stylesheet", type="text/css", href="/stylesheets/bootstrap.min.css")
 		link(rel="stylesheet", type="text/css", href="/stylesheets/customer.css")
-	body(ng-controller="IndexController")
+	body(ng-controller="IndexController", ng-init="getPrayRecords()")
 		include ./public/header.jade
 		div.container
-			div.col-md-10.col-md-push-1(style="padding-top:30px")
-				div.col-md-10
+			script(id="confirmAdd.html", type="text/ng-template")
+				div.modal-header 
+					h3.modal-title 确认提交
+				div.modal-body
+					{{submitObject.name}}
+					p
+					{{submitObject.content}}
+					p
+					{{submitObject.date}}
+				div.modal-footer
+					button.btn.btn-primary(type="button", ng-click="ok()") 确定
+					button.btn.btn-primary(type="button", ng-click="cancel()") 取消
+			div.col-xd-10.col-xd-push-1(style="padding-top:30px")
+				div.col-xd-10
 					div.panel.panel-success
 						div.panel-heading 代祷事项录入
 						div.panel-body 
@@ -26,13 +38,11 @@ html(ng-app="indexapp")
 									input(type="button", value="提交", ng-click="insertRecord()", ng-class="submitClass")
 					div.panel.panel-success
 						div.panel-heading 大家代祷事项
-						div.panel-body(ng-init="getPrayRecords()")
+						div.panel-body
 							div.list-group
-								a.list-group-item(ng-repeat="prayRecord in prayData | orderBy:date ")
-									h4.list-group-item-heading {{prayRecord.name}}
-									br
-									p.list-group-item-text {{prayRecord.content}}
-									br
-									p.list-group-item-text {{prayRecord.date.substring(0, 10)}}
+								a.list-group-item(ng-repeat="prayRecord in prayData ")
+									{{prayRecord.name}}
+									p
+									{{prayRecord.content}}
 
 				
